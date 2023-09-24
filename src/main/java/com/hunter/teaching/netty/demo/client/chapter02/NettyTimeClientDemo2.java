@@ -1,4 +1,4 @@
-package com.hunter.teaching.netty.demo.client.chapter01;
+package com.hunter.teaching.netty.demo.client.chapter02;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 /**
  * This Demo is not consider the tcp stick package or tcp unpacking
  */
-public class NettyTimeClientDemo1 {
+public class NettyTimeClientDemo2 {
 
     public void connect(String ip, int port) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -36,13 +36,13 @@ public class NettyTimeClientDemo1 {
 
         @Override
         protected void initChannel(SocketChannel sc) throws Exception {
-            sc.pipeline().addLast(new NettyTimeClientHandlerDemo1());
+            sc.pipeline().addLast(new NettyTimeClientHandlerDemo2());
         }
         
     }
     
     public static void main(String[] args) throws Exception {
-        NettyTimeClientDemo1 nettyTimeClientDemo = new NettyTimeClientDemo1();
+        NettyTimeClientDemo2 nettyTimeClientDemo = new NettyTimeClientDemo2();
         nettyTimeClientDemo.connect("127.0.0.1", 10080);
     }
     
