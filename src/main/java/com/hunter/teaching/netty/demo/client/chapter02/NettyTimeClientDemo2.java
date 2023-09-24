@@ -10,7 +10,10 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
- * This Demo is not consider the tcp stick package or tcp unpacking
+ * @author hunter
+ * @since May 5th,
+ * @note This Demo is not consider the tcp stick package or tcp unpacking. We
+ *       use it to send 1000 messages to the server.It will appear issue.
  */
 public class NettyTimeClientDemo2 {
 
@@ -18,9 +21,10 @@ public class NettyTimeClientDemo2 {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
-            b.group(group).channel(NioSocketChannel.class)
+            b.group(group)
+            .channel(NioSocketChannel.class)
             .option(ChannelOption.TCP_NODELAY, true)
-            .handler(new NettyChildHandlerClientDemo1());
+            .handler(new NettyHandlerClientDemo1());
             // async connect operation
             ChannelFuture f = b.connect(ip, port).sync();
             // wait the client close the channel
@@ -31,19 +35,19 @@ public class NettyTimeClientDemo2 {
             group.shutdownGracefully();
         }
     }
-    
-    private class NettyChildHandlerClientDemo1 extends ChannelInitializer<SocketChannel> {
+
+    private class NettyHandlerClientDemo1 extends ChannelInitializer<SocketChannel> {
 
         @Override
         protected void initChannel(SocketChannel sc) throws Exception {
             sc.pipeline().addLast(new NettyTimeClientHandlerDemo2());
         }
-        
+
     }
-    
+
     public static void main(String[] args) throws Exception {
         NettyTimeClientDemo2 nettyTimeClientDemo = new NettyTimeClientDemo2();
         nettyTimeClientDemo.connect("127.0.0.1", 10080);
     }
-    
+
 }
