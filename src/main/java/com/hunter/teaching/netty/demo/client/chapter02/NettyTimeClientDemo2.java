@@ -24,7 +24,7 @@ public class NettyTimeClientDemo2 {
             b.group(group)
             .channel(NioSocketChannel.class)
             .option(ChannelOption.TCP_NODELAY, true)
-            .handler(new NettyHandlerClientDemo1());
+            .handler(new NettyHandlerClientDemo());
             // async connect operation
             ChannelFuture f = b.connect(ip, port).sync();
             // wait the client close the channel
@@ -36,7 +36,7 @@ public class NettyTimeClientDemo2 {
         }
     }
 
-    private class NettyHandlerClientDemo1 extends ChannelInitializer<SocketChannel> {
+    private class NettyHandlerClientDemo extends ChannelInitializer<SocketChannel> {
 
         @Override
         protected void initChannel(SocketChannel sc) throws Exception {
