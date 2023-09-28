@@ -10,7 +10,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class NettyTimeClientHandlerDemo2 extends ChannelInboundHandlerAdapter {
 
-    private static final String CLIENT_COMMAND = "Query Time Order \r\n";
+    private static final String CLIENT_COMMAND = "Query Time Order\r\n";
 
     private final AtomicInteger atomicInteger = new AtomicInteger(0);
 
