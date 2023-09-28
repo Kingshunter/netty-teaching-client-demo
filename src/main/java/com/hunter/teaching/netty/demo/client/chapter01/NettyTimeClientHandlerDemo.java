@@ -7,7 +7,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-public class NettyTimeClientHandlerDemo1 extends ChannelInboundHandlerAdapter {
+public class NettyTimeClientHandlerDemo extends ChannelInboundHandlerAdapter {
     
     private static final String CLIENT_COMMAND = "Query Time Order";
     

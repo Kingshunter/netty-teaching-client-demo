@@ -11,11 +11,11 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
  * @author hunter
- * @since May 5th,
- * @note This Demo is not consider the tcp stick package or tcp unpacking. We
- *       use it to send 1000 messages to the server.It will appear issue.
+ * @since May 5th
+ * @note This Demo doesn't consider the tcp stick package and tcp unpacking issues.
+ *       We send 1000 messages to the server and it will appear the issues.
  */
-public class NettyTimeClientDemo2 {
+public class NettyTimeClientDemo {
 
     public void connect(String ip, int port) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -40,13 +40,13 @@ public class NettyTimeClientDemo2 {
 
         @Override
         protected void initChannel(SocketChannel sc) throws Exception {
-            sc.pipeline().addLast(new NettyTimeClientHandlerDemo2());
+            sc.pipeline().addLast(new NettyTimeClientHandlerDemo());
         }
 
     }
 
     public static void main(String[] args) throws Exception {
-        NettyTimeClientDemo2 nettyTimeClientDemo = new NettyTimeClientDemo2();
+        NettyTimeClientDemo nettyTimeClientDemo = new NettyTimeClientDemo();
         nettyTimeClientDemo.connect("127.0.0.1", 10080);
     }
 

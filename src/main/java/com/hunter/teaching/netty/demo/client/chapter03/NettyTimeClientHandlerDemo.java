@@ -1,4 +1,4 @@
-package com.hunter.teaching.netty.demo.client.chapter02;
+package com.hunter.teaching.netty.demo.client.chapter03;
 
 import java.nio.charset.Charset;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -8,7 +8,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-public class NettyTimeClientHandlerDemo2 extends ChannelInboundHandlerAdapter {
+public class NettyTimeClientHandlerDemo extends ChannelInboundHandlerAdapter {
 
     private static final String CLIENT_COMMAND = "Query Time Order\r\n";
 
@@ -27,8 +27,7 @@ public class NettyTimeClientHandlerDemo2 extends ChannelInboundHandlerAdapter {
     }
 
     /**
-     * it will appear the issue because does not consider the tcp stick package or
-     * tcp unpacking.
+     * It will not appear the tcp stick package and tcp unpacking issues.
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
