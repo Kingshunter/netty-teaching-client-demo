@@ -1,4 +1,4 @@
-package com.hunter.teaching.netty.demo.client.chapter03;
+package com.hunter.teaching.netty.demo.client.chapter03.part02;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,10 +8,12 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 /**
  * @author hunter
- * @since May 5th
+ * @since May 7th
  * @note This Demo considers the tcp stick package or tcp unpacking issues.
  *       We send 1000 messages to the server and no issue will appear.
  */
@@ -40,6 +42,10 @@ public class NettyTimeClientDemo {
 
         @Override
         protected void initChannel(SocketChannel sc) throws Exception {
+            // LineBasedFrameDecoder slove the tcp stick package or tcp unpacking issues
+            sc.pipeline().addLast(new LineBasedFrameDecoder(1024));
+            // StringDecoder transfer the bytebuf object to string object automatically
+            sc.pipeline().addLast(new StringDecoder());
             sc.pipeline().addLast(new NettyTimeClientHandlerDemo());
         }
 

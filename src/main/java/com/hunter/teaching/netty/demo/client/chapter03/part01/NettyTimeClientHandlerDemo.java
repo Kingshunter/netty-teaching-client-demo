@@ -1,6 +1,5 @@
-package com.hunter.teaching.netty.demo.client.chapter03;
+package com.hunter.teaching.netty.demo.client.chapter03.part01;
 
-import java.nio.charset.Charset;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.netty.buffer.ByteBuf;
@@ -19,8 +18,8 @@ public class NettyTimeClientHandlerDemo extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        byte[] byteArr = CLIENT_COMMAND.getBytes();
         for (int i = 0; i < 1000; i++) {
-            byte[] byteArr = CLIENT_COMMAND.getBytes();
             ByteBuf byteBuf = Unpooled.copiedBuffer(byteArr);
             ctx.writeAndFlush(byteBuf);
         }
@@ -31,10 +30,7 @@ public class NettyTimeClientHandlerDemo extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf byteBuf = (ByteBuf) msg;
-        byte[] byteArr = new byte[byteBuf.readableBytes()];
-        byteBuf.readBytes(byteArr);
-        String message = new String(byteArr, Charset.defaultCharset());
+        String message = (String) msg;
         int count = atomicInteger.incrementAndGet();
         System.out.println("Now is : " + message + ", count = " + count);
     }

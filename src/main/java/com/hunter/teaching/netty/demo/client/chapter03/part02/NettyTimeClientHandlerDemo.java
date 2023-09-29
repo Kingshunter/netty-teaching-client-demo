@@ -1,6 +1,5 @@
-package com.hunter.teaching.netty.demo.client.chapter02;
+package com.hunter.teaching.netty.demo.client.chapter03.part02;
 
-import java.nio.charset.Charset;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.netty.buffer.ByteBuf;
@@ -27,14 +26,11 @@ public class NettyTimeClientHandlerDemo extends ChannelInboundHandlerAdapter {
     }
 
     /**
-     * It will appear the issues because doesn't consider the tcp stick package and tcp unpacking issues.
+     * It will not appear the tcp stick package and tcp unpacking issues.
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf byteBuf = (ByteBuf) msg;
-        byte[] byteArr = new byte[byteBuf.readableBytes()];
-        byteBuf.readBytes(byteArr);
-        String message = new String(byteArr, Charset.defaultCharset());
+        String message = (String) msg;
         int count = atomicInteger.incrementAndGet();
         System.out.println("Now is : " + message + ", count = " + count);
     }
