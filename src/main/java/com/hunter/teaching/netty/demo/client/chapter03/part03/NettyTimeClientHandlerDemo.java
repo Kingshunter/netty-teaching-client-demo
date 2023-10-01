@@ -1,4 +1,4 @@
-package com.hunter.teaching.netty.demo.client.chapter03.part02;
+package com.hunter.teaching.netty.demo.client.chapter03.part03;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

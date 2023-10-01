@@ -1,4 +1,4 @@
-package com.hunter.teaching.netty.demo.client.chapter03.part02;
+package com.hunter.teaching.netty.demo.client.chapter03.part03;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
