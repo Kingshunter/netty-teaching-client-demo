@@ -8,15 +8,13 @@ import java.nio.channels.SocketChannel;
 
 public class NIOTimeBlockingClientDemo {
 
-    private static final String HOST_NAME = "127.0.0.1";
-
     private static final int PORT = 6666;
 
     private static final String MSG = "Query Time Order";
 
     public static void main(String[] args) throws IOException {
         SocketChannel socketChannel = SocketChannel.open();
-        SocketAddress socketAddress = new InetSocketAddress(HOST_NAME, PORT);
+        SocketAddress socketAddress = new InetSocketAddress(PORT);
         do {
             if (!socketChannel.isConnectionPending())
                 socketChannel.connect(socketAddress);

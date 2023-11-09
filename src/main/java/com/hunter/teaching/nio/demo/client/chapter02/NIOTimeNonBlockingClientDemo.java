@@ -9,8 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 public class NIOTimeNonBlockingClientDemo {
 
-    private static final String HOST_NAME = "127.0.0.1";
-
     private static final int PORT = 6666;
 
     private static final String MSG = "Query Time Order";
@@ -20,7 +18,7 @@ public class NIOTimeNonBlockingClientDemo {
     public static void main(String[] args) throws IOException, InterruptedException {
         SocketChannel socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(false);
-        SocketAddress socketAddress = new InetSocketAddress(HOST_NAME, PORT);
+        SocketAddress socketAddress = new InetSocketAddress(PORT);
         do {
             if (!socketChannel.isConnectionPending())
                 socketChannel.connect(socketAddress);
